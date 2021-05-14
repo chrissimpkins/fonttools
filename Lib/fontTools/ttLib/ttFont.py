@@ -659,13 +659,7 @@ class TTFont(object):
 	def getTableTags(self):
 		"""Returns a list of available table tags as strings.
 		"""
-		if self.reader:
-			return list(self.reader.keys())
-		else:
-			table_tags = list(self.tables.keys())
-			if "GlyphOrder" in table_tags:
-				table_tags.remove("GlyphOrder")
-			return table_tags
+		return [tag for tag in self.keys() if tag != "GlyphOrder"]
 
 	def getGlyphSet(self, preferCFF=True):
 		"""Return a generic GlyphSet, which is a dict-like object
